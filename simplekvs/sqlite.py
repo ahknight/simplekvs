@@ -7,10 +7,12 @@ class SQLiteStore(Store):
     """
     ext = ".sqlite3"
     def __init__(self, storepath):
-        if not storepath.endswith(self.ext):
-            storepath += self.ext
-        
-        is_new = not os.path.exists(storepath)
+        if storepath == ":memory:":
+            is_new = True
+        else:
+            if not storepath.endswith(self.ext):
+                storepath += self.ext
+            is_new = not os.path.exists(storepath)
         
         self.db = sqlite3.connect(storepath)
         self.db.isolation_level = None
