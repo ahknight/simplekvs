@@ -1,14 +1,40 @@
-KVS
-===
+.. automodule:: simplekvs
 
-.. autoclass:: kvs.Store
-    :members:
+.. currentmodule:: simplekvs
 
-.. autoclass:: kvs.DBMStore
-    :members:
+:class:`Store`
+--------------
 
-.. autoclass:: kvs.SQLiteStore
-    :members:
+.. autoclass:: Store
+    
+    .. automethod:: get(key)
 
-.. autoclass:: kvs.SymlinkStore
-    :members:
+    .. automethod:: set(key, value)
+
+    .. automethod:: delete(key)
+
+    .. automethod:: keys()
+
+
+:class:`DBMStore`
+-----------------
+
+.. autoclass:: DBMStore
+
+
+:class:`MemoryStore`
+--------------------
+
+.. autoclass:: MemoryStore
+
+
+:class:`SQLiteStore`
+--------------------
+
+.. autoclass:: SQLiteStore
+
+
+:class:`SymlinkStore`
+---------------------
+
+.. autoclass:: SymlinkStore

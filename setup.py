@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
+import versioneer
+versioneer.versionfile_source = 'simplekvs/_version.py'
+versioneer.versionfile_build = 'simplekvs/_version.py'
+versioneer.tag_prefix = 'v'
+versioneer.parentdir_prefix = 'simplekvs-'
+
 setup(
     name="simplekvs",
-    version="1.0.0",
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     description="A simple and extensable key-value store for Python.",
     long_description="",
 

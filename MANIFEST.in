@@ -1,0 +1,2 @@
+include versioneer.py
+include simplekvs/_version.py

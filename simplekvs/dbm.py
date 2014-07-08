@@ -1,34 +1,40 @@
 from .store import Store
 
 try:
-    import dbm.ndbm as dbm #py3
+    from cPickle import dumps, loads
 except ImportError:
-    import dbm #py2
+    from pickle import dumps, loads
+
+try:
+    import dbm.ndbm as dbm  # py3
+except ImportError:
+    import dbm  # py2
+
 
 class DBMStore(Store):
     """
     A key-value store backed by a (N)DBM database.
     """
-    ext = ".db"
     def __init__(self, storepath):
-        if storepath.endswith(self.ext):
-            storepath = storepath[:-len(self.ext)]
-            
         self.storepath = storepath
         self.db = dbm.open(storepath, "c", 0o600)
-    
+
     def get(self, key):
-        return self.db[key].decode("utf8")
-    
+        k = dumps(key)
+        v = loads(self.db[k])
+        return v
+
     def set(self, key, value):
-        self.db[key] = value.encode("utf8")
-    
+        k = dumps(key)
+        v = dumps(value)
+        self.db[k] = v
+
     def delete(self, key):
-        del self.db[key]
-    
+        k = dumps(key)
+        del self.db[k]
+
     def keys(self):
-        return self.db.keys()
-    
+        return [loads(k) for k in self.db.keys()]
+
     def values(self):
         return self.db.values()
-
