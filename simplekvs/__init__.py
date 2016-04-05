@@ -63,6 +63,7 @@ from .store import Store
 from .dbm import DBMStore
 from .memory import MemoryStore
 from .sqlite import SQLiteStore
+from .sqlalchemy import SQLAlchemyStore
 from .symlink import SymlinkStore
 
 from ._version import get_versions

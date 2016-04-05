@@ -75,3 +75,4 @@ class Store(object):
 
     def __len__(self):
         return len(self.keys())
+
